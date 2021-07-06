@@ -23,8 +23,11 @@
 #include "Collider2D.h"
 
 #include "ObjectTest.h"
+#include "Enemy.h"
+#include "Bullet.h"
 
 #include "Scene.h"
 #include "GameScene.h"
+extern Scene* nowScene;
 
 #include "Game.h"

@@ -16,7 +16,7 @@ void Game::Init()
     int SM_Height = GetSystemMetrics(SM_CYSCREEN);
     SystemParametersInfo(SPI_GETWORKAREA, 0, (PVOID)&rectArea, 0);
 
-    TaskHeight = (SM_Height - (rectArea.bottom - rectArea.top));
+    TaskHeight = (SM_Height - (rectArea.bottom - rectArea.top)) / 2;
 #endif
 
     ChangeScene(new GameScene());
@@ -33,12 +33,13 @@ void Game::Init()
     D3DXCreateSprite(DXUTGetD3D9Device(), &pSprite);
     D3DXCreateLine(DXUTGetD3D9Device(), &pLine);
 
-    destCameraPos = cameraPos = D3DXVECTOR2(-960, -540);
-
     Input::GetInstance().Start();
 
     DXUTGetD3D9Device()->SetRenderState(D3DRS_ZENABLE, FALSE);
     DXUTGetD3D9Device()->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+
+
+    destCameraPos = cameraPos = D3DXVECTOR2(-screenWidth / 2, -screenHeight / 2);
 }
 
 void Game::Update(float deltaTime)
@@ -93,7 +94,7 @@ void Game::Render()
         //#ifdef DEBUG
         //    _42 -= TaskHeight / 2;
         //#endif // DEBUG
-        D3DXVECTOR3 v[] = { D3DXVECTOR3(data.p1.x - 960, data.p1.y - 540, 0.0f), D3DXVECTOR3(data.p2.x - 960, data.p2.y - 540, 0.0f) };
+        D3DXVECTOR3 v[] = { D3DXVECTOR3(data.p1.x - screenWidth / 2, data.p1.y - screenHeight / 2, 0.0f), D3DXVECTOR3(data.p2.x - screenWidth / 2, data.p2.y - screenHeight  / 2, 0.0f) };
         D3DXMATRIX retMat = data.mat * matWorld * matView * matProj;
 
         pLine->DrawTransform(v, 2, &retMat, data.color);

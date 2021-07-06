@@ -1,11 +1,12 @@
 #pragma once
-
-class GameScene : public Scene
+class Enemy : public Object
 {
 public:
-	Enemy* enemy = NULL;
+	Sprite spr;
+	RenderInfo ri;
 
-	virtual void Init() override;
+	Enemy();
+
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;
 };

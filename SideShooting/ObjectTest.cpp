@@ -13,7 +13,6 @@ ObjectTest::ObjectTest()
 
 	simpleShader = new SimpleShader;
 	
-	pos.y = 540 - 70;
 }
 
 void ObjectTest::Update(float deltaTime)
@@ -23,8 +22,17 @@ void ObjectTest::Update(float deltaTime)
 	if (timer >= 2.0f)
 		timer -= 3.0f;
 
+	if (Input::GetInstance().KeyDown(VK_SPACE))
+		nowScene->obm.AddObject(new Bullet(pos, 180));
+
 	if (GetAsyncKeyState(VK_LEFT))
 		pos.x -= 300 * deltaTime;
+
+	if (GetAsyncKeyState(VK_UP))
+		pos.y -= 300 * deltaTime;
+
+	if (GetAsyncKeyState(VK_DOWN))
+		pos.y += 300 * deltaTime;
 
 	if (GetAsyncKeyState(VK_RIGHT))
 		pos.x += 300 * deltaTime;
