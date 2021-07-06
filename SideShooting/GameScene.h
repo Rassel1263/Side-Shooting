@@ -3,7 +3,7 @@
 class GameScene : public Scene
 {
 public:
-	Enemy* enemy = NULL;
+	EnemyManager* enemyManager = NULL;
 
 	virtual void Init() override;
 	virtual void Update(float deltaTime) override;

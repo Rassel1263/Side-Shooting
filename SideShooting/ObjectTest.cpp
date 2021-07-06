@@ -22,8 +22,10 @@ void ObjectTest::Update(float deltaTime)
 	if (timer >= 2.0f)
 		timer -= 3.0f;
 
-	if (Input::GetInstance().KeyDown(VK_SPACE))
-		nowScene->obm.AddObject(new Bullet(pos, 180));
+ 	Shot(deltaTime);
+
+	if (Input::GetInstance().KeyDown('R'))
+		(shotType == ShotType::Direct) ? shotType = ShotType::Radiation : shotType = ShotType::Direct;
 
 	if (GetAsyncKeyState(VK_LEFT))
 		pos.x -= 300 * deltaTime;
@@ -45,4 +47,33 @@ void ObjectTest::Render()
 	//spr.Render(ri);
 
 	Object::Render();
+}
+
+void ObjectTest::Shot(float deltaTime)
+{
+	shotTimer += deltaTime;
+
+	if (shotTimer >= pInfo.shotSpd)
+	{
+		if (Input::GetInstance().KeyDown(VK_SPACE))
+		{
+			switch (shotType)
+			{
+			case ShotType::Direct:
+				pInfo.shotSpd = 0.1f;
+				pInfo.bulletAmount = 1;
+				break;
+
+			case ShotType::Radiation:
+				pInfo.shotSpd = 0.3f;
+				pInfo.bulletAmount = 3;
+				break;
+			}
+
+			for (int i = 0; i < pInfo.bulletAmount; ++i)
+				nowScene->obm.AddObject(new Bullet(pos, (i - pInfo.bulletAmount / 2) * pInfo.shotAngle, 300));
+
+			shotTimer = 0.0f;
+		}
+	}
 }
