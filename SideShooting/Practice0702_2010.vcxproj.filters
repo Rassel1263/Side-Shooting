@@ -130,6 +130,7 @@
     <ClCompile Include="EnemyManager.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="Troop.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Collider2D.h">
@@ -180,6 +181,7 @@
     <ClInclude Include="EnemyManager.h">
       <Filter>Object</Filter>
     </ClInclude>
+    <ClInclude Include="Troop.h" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

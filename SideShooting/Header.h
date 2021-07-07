@@ -1,5 +1,7 @@
 #pragma once
 
+#define IntEnum(p) static_cast<int>(p)
+
 #include <iostream>
 #include <istream>
 #include <fstream>
@@ -27,6 +29,7 @@
 
 #include "EnemyManager.h"
 #include "Enemy.h"
+#include "Troop.h"
 
 #include "Scene.h"
 #include "GameScene.h"

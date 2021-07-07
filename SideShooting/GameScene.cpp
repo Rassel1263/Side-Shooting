@@ -5,15 +5,12 @@ void GameScene::Init()
 {
 	ShaderManager::GetInstance().CreateEffect("Simple", L"SimpleShader.fx", 0);
 
-	enemyManager = new EnemyManager();
-
+	obm.AddObject(new Troop(3, 100, 180,Formation::S_Shaped, D3DXVECTOR2(0, 0)));
 	obm.AddObject(new ObjectTest());
 }
 
 void GameScene::Update(float deltaTime)
 {
-	enemyManager->SpawnEnemy(deltaTime);
-
 	Scene::Update(deltaTime);
 }
 

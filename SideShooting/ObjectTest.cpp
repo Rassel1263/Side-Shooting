@@ -38,6 +38,7 @@ void ObjectTest::Update(float deltaTime)
 
 	if (GetAsyncKeyState(VK_RIGHT))
 		pos.x += 300 * deltaTime;
+
 }
 
 void ObjectTest::Render()
